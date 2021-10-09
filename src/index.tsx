@@ -3,19 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';//全局样式文件
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
-const defaultContextValue = {
-  username: "Joe"
-}
-
-export const appContext = React.createContext(defaultContextValue)
+import { AppStateProvider } from "./AppState"
 
 ReactDOM.render(//react帮助渲染虚拟dom；参数就是函数签名（app组件返回类型符合render的定义（render可以由多个参数组合return不同返回值）
   <React.StrictMode>
-    <appContext.Provider value={defaultContextValue}>
-      <App />
-    </appContext.Provider>
-    
+    <AppStateProvider>
+      <App username={''} />
+    </AppStateProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
